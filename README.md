@@ -89,7 +89,36 @@ npm i react-router-dom react-hot-toast axios react-hook-form
 
 react-router-dom es un módulo para poder tener múltiples páginas en el frontend, react-hot-toast permite tener unos mensajes cuando realizemos alguna acción (como notificaciones), axios módulo para peticiones, react-hook-form para validar input en el frontend
 
-En proyecto de vite, src, en App.jsx tenemos la plantilla de lo que vemos en el cliente. Lo quitamos y ponemos un componente de React (con la abreviatura rfce, que tendremos un snippet asociado si descargamos la extensión para VSC ES7+ React/Redux/React-Native snippets)
+En proyecto de vite, src, en App.jsx tenemos la plantilla de lo que vemos en el cliente. Lo quitamos y ponemos un componente de React (con la abreviatura rfce, que tendremos un snippet asociado si descargamos la extensión para VSC ES7+ React/Redux/React-Native snippets). También eliminamos los estilos de App.css e index.css
+
+
+Creamos rutas:
+
+Creamos carpetas pages, components y api en src de client. Creamos unas páginas y añadimos las rutas en App.jsx, creamos un componente Navigation en el que vamos a poner enlaces a esas rutas y lo añadimos en App.jsx.
+
+
+Pedir tasks al backend:
+
+Creamos un componente TasksList y un fichero tasks.api.js en la carpeta api del proyecto de vite. El fichero en api realiza la llamada a la API y devuelve los datos, la función que hace eso será importada y llamada en el componenete TasksList. 
+
+Nos dará un error en consola que dirá que no tenemos autorización (por esto instalamos el modulo django-cors-headers). Tenemos que ir a los settings del proyecto django y añadir la dirección a CORS_ALLOWED_ORIGINS.
+
+Editamos TaskList.jsx para que los datos se muestren de modo correcto, y creamos un nuevo componente para los datos que se van a mostrar de la api.
+
+Crear tareas:
+
+Vamos a modificar la página del formulario, y nos ayudará el módulo react-hook-form.
+
+Delete tasks:
+
+...
+
+Añadir estilos con tailwind y react-hot-toast
+
+Uso de Toaster
+
+Uso de Tailwind, lo instalamos siguiendo la [documentación oficial](https://tailwindcss.com/docs/guides/vite) para Vite en nuestro caso.
+
 
 
 

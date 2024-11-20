@@ -128,14 +128,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # django-cors-headers
-
+# CORS_ALLOW_ALL_ORIGINS = True # Para permitir todos los origenes para pruebas rápidas
 CORS_ALLOWED_ORIGINS = [
-    #"https://example.com",
-    #"https://sub.example.com",
-    #"http://localhost:8080",
-    #"http://127.0.0.1:9000",
+    "http://localhost:5173"
 ]
-
 
 # Not working, coreapi module is not compatible with new versions of Python (requires Python 3.10 or earlier)
 """ REST_FRAMEWORK = {
