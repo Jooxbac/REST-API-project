@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'rest_framework',
-    'tasks',
+    # "coreapi", # Not working, coreapi module is not compatible with new versions of Python (requires Python 3.10 or earlier)
+    "corsheaders",
+    "rest_framework",
+    "tasks",
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,9 @@ CORS_ALLOWED_ORIGINS = [
     #"http://localhost:8080",
     #"http://127.0.0.1:9000",
 ]
+
+
+# Not working, coreapi module is not compatible with new versions of Python (requires Python 3.10 or earlier)
+""" REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"
+} """

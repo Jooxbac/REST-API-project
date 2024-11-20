@@ -10,13 +10,20 @@ I carried an alike project that can be found [here](https://github.com/Jooxbac/D
  
 ## Setup Steps
 
+
 Same as the other project, but:
 
-`pip install django-cors-headers`, añade headers. Para que no surjan problemas con el servidor que tendremos en el puerto 8000 y otro que creemos.
+`pip install django-cors-headers`, añade headers. Para que no surjan problemas con el servidor que tendremos en el puerto 8000 y otro que creemos (será con Vite, en el puerto 5173, lo veremos más adelante).
 Add 'corsheaders' to `INSTALLED_APPS` in project's `settings.py` and also to `MIDDLEWARE` in the same file, as high as possible and at least before "django.middleware.common.CommonMiddleware" as recommended at [django-cors-headers docs](https://pypi.org/project/django-cors-headers/).
 Then add `CORS_ALLOWED_ORIGINS`in settings.py, that holds a list of origins authorized to make cross-site HTTP request, empty by now. Again, [check the docs](https://pypi.org/project/django-cors-headers/) for any doubt.
 
+For using React:
 
+Install node ![imagen](images/01_install_node.jpg) en Powershell, como administrador, para que el segundo comando no de problemas. Además, debemos permitir la ejecución de scripts, (vemos el valor actual con `Get-ExecutionPolicy`) introduciendo en PowerShell `Set-ExecutionPolicy RemoteSigned` y respondiendo que si a lo que pida. Cerramos y abrimos porwershell como admin y entonces introducimos los pasos de la imagen. Sin embargo desde cmd no podía acceder a `node -v` o `npm -v`, hay que añadir node a las variables del entorno, en Path. Desde la powershell usamos `(Get-Command node).Source` para obtener el directorio donde está node, y lo añadimos a las variables del entorno, no el ejecutable, sino la carpeta que lo contiene, ojo (Clic derecho en este equipo > Propiedades > Configuración avanzada del sistema > Variables de entorno... > Seleccionar variable del sistema Path, añadir nuevo y meter la ruta de node).
+Comprobar después en cmd que podemos acceder a node y npm con `node -v` y `npm -v`. Recordar recuperar la política de Powershell con respecto a los scripts con `Set-ExecutionPolicy [valor_anterior]]`. En mi caso era "Restricted". Podemos comprobar el valor actual con `Get-ExecutionPolicy`
+
+
+# Backend:
 
 ## Models:
 
@@ -30,13 +37,66 @@ There are no Tasks in this admin panel. If we want to show them, we have to regi
 
 Now we can add Tasks, but what's showing is just an "[model_name] object". To edit what is showed, we can create a __str__ function inside the model, that returns what we want to be showed.
 
+## Queryset , API
+
+Create serializers.py in app's folder.
+
+Create View.
+
+Add urls to app and then to project.
+
+
+## Auto Docs using Coreapi module
+
+Añadir módulo para que autodocumente nuestra app.
+
+`pip install coreapi`
+
+Add module to INSTALLED_APPS, go to urls in app and add route to docs.
+
+Requiere versión de Python 3.10 o anterior, por lo que tendremos que crear el entorno virtual usando esa versión, si ya lo hemos creado con una versión más actual, entonces tendremos que volver a empezar, pues no se permite el cambio de versión del entorno, usa aquella con la que fue creado.
+
+# Frontend:
+
+## Configuración de React
+
+Dejamos el servidor abierto en la terminal de python y abrimos una nueva terminal (cmd).
+
+Usaremos la herramienta Vitejs
+
+npm create vite (Aceptamos instalar el paquete)
+
+Damos un nombre al proyecto (hemos escogido "client"), seleccionamos el framework a usar (React en este caso), y la variante (JS en este caso)
+
+Introducimos los comandos facilitados en la consola:
+
+"""console
+  cd [nombre proyecto]
+  npm install
+  npm run dev
+"""
+
+Entramos en `http://localhost:5173/`
+
+
+Comunicar frontend con Backend:
+
+Salimos del modo dev de vite en la consola, y en la consola, dentro de cliente, instalamos unos módulos:
+
+npm i react-router-dom react-hot-toast axios react-hook-form
+
+(Nota: npm i = npm install)
+
+react-router-dom es un módulo para poder tener múltiples páginas en el frontend, react-hot-toast permite tener unos mensajes cuando realizemos alguna acción (como notificaciones), axios módulo para peticiones, react-hook-form para validar input en el frontend
+
+En proyecto de vite, src, en App.jsx tenemos la plantilla de lo que vemos en el cliente. Lo quitamos y ponemos un componente de React (con la abreviatura rfce, que tendremos un snippet asociado si descargamos la extensión para VSC ES7+ React/Redux/React-Native snippets)
 
 
 
 
 
-Install node ![imagen](images/01_install_node.jpg) en Powershell, como administrador, para que el segundo comando no de problemas. Además, debemos permitir la ejecución de scripts, (vemos el valor actual con `Get-ExecutionPolicy`) introduciendo en PowerShell `Set-ExecutionPolicy RemoteSigned` y respondiendo que si a lo que pida. Cerramos y abrimos porwershell como admin y entonces introducimos los pasos de la imagen. Sin embargo desde cmd no podía acceder a `node -v` o `npm -v`, hay que añadir node a las variables del entorno, en Path. Desde la powershell usamos `(Get-Command node).Source` para obtener el directorio donde está node, y lo añadimos a las variables del entorno, no el ejecutable, sino la carpeta que lo contiene, ojo (Clic derecho en este equipo > Propiedades > Configuración avanzada del sistema > Variables de entorno... > Seleccionar variable del sistema Path, añadir nuevo y meter la ruta de node).
-Comprobar después en cmd que podemos acceder a node y npm con `node -v` y `npm -v`. Recordar recuperar la política de Powershell con respecto a los scripts con `Set-ExecutionPolicy [valor_anterior]]`. En mi caso era "Restricted". Podemos comprobar el valor actual con `Get-ExecutionPolicy`
+
+
 
 
 1. ### Creation of Virtual Environment
